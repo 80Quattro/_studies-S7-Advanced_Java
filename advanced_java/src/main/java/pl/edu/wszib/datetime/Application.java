@@ -1,5 +1,7 @@
 package pl.edu.wszib.datetime;
 
+import pl.edu.wszib.datetime.java8.Ex3;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -7,6 +9,10 @@ import java.util.TimeZone;
 public class Application {
 
     public static void main(String[] args) {
+
+        /*
+            Before Java8
+        */
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -47,6 +53,7 @@ public class Application {
 
         // ex3 - create a method which returns object with to fields: "from" and "to", the fields should contain
         //      the beggining and the end of last month
+        getStartAndEndOfPrevMonth();
     }
 
     private static Integer calculate(Calendar calendar) {
@@ -58,6 +65,22 @@ public class Application {
     private static String showDate(Calendar calendar) {
         return calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH) +
                 " " + calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+    }
+
+    private static Pair getStartAndEndOfPrevMonth() {
+        Date date = new Date();
+
+        Calendar from = Calendar.getInstance();
+        from.setTime(date);
+        from.set(Calendar.MONTH, from.get(Calendar.MONTH) - 1);
+        from.set(Calendar.DAY_OF_MONTH, from.getActualMinimum(Calendar.DAY_OF_MONTH));
+
+        Calendar to = Calendar.getInstance();
+        to.setTime(date);
+        to.set(Calendar.MONTH, to.get(Calendar.MONTH) - 1);
+        to.set(Calendar.DAY_OF_MONTH, to.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+        return new Pair(from, to);
     }
 
     private static record Pair(Calendar from, Calendar to) {

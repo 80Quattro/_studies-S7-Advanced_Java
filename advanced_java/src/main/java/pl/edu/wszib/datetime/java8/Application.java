@@ -48,6 +48,15 @@ public class Application {
         System.out.println("Duration: " + duration1);
         Duration duration2 = Duration.ofSeconds(1);
         System.out.println("Duration: " + duration2);
+
+        // Ex1. Print out all info about current date (day, month, year, minute ...)
+        // Ex2. Show current time in NewYork timezone
+        // Ex3. Create method which based on given date returns object with two fields:
+        //          "from" and "to" (the beginning and end of previous month)
+        // Ex4. To object from ex3 add filed to store amount between "from" and "to"
+
+        // Ex1.
+
     }
 
 }
